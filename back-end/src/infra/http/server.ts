@@ -6,9 +6,9 @@ import { serializerCompiler, validatorCompiler, hasZodFastifySchemaValidationErr
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import { createIntencaoRoute } from './routes/intencoes/create-intencao';
-import { get } from 'http';
 import { getMemberRoute } from './routes/membros/get-member';
 import { getIntencoesRoute } from './routes/intencoes/get-intencoes';
+import { createMemberRoute } from './routes/membros/create-member';
 
 const server = fastify()
 
@@ -45,10 +45,12 @@ server.register(fastifySwaggerUi, {
     routePrefix: '/docs',
 })
 
-// Registra as rotas Intenções e Membros
+// Registra as rotas Intenções
 server.register(createIntencaoRoute)
 server.register(getIntencoesRoute)
+// Registra as rotas Membros
 server.register(getMemberRoute)
+server.register(createMemberRoute)
 
 
 console.log(env.DATABASE_URL)

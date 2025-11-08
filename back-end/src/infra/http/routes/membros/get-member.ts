@@ -13,7 +13,8 @@ export function getMemberRoute(server: FastifyInstance) {
                     name: z.string(),
                     email: z.string().email(),
                     empresa: z.string(),
-                    motivo: z.string()
+                    motivo: z.string(),
+                    status: z.string()
                 }))
             }
         }
