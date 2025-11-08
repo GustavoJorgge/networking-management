@@ -1,5 +1,6 @@
 import { FastifyInstance } from "fastify";
 import {z} from 'zod';
+import prisma from "@/infra/prisma/client";
 
 export function createUserRoute(server: FastifyInstance) {
     server.post('/users',{
@@ -7,7 +8,9 @@ export function createUserRoute(server: FastifyInstance) {
             summary: 'Cria um novo usuario',
             body: z.object({
                 name: z.string(),
-                email: z.string().email()
+                email: z.string().email(),
+                empresa: z.string(),
+                motivo: z.string()
             }),
             response: {
                 201: z.object({id: z.string().uuid()}),
@@ -15,7 +18,32 @@ export function createUserRoute(server: FastifyInstance) {
                     
             }
         }
-    },(request, reply) => {
-        return reply.status(201).send({id: 'some-uuid' });
+    },async (request, reply) => {
+      
+        const createUserBodySchema = z.object({
+            name: z.string(),
+            email: z.string().email(),
+            empresa: z.string(),
+            motivo: z.string()
+        })
+
+        const result = createUserBodySchema.safeParse(request.body)
+
+        if (!result.success) {
+            return reply.status(409).send(result.error)
+        }
+
+        const { name, email, empresa, motivo } = result.data
+
+        const user = await prisma.user.create({
+            data: {
+                name,
+                email,
+                empresa,
+                motivo
+            }
+        })
+
+        return reply.status(201).send({ message: 'Usuário criado com sucesso', id: user.email});
     });
 }
