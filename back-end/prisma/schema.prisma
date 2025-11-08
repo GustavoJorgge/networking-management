@@ -7,11 +7,23 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model User {
+model intencaoParticipar {
+    id        String   @id @default(uuid())
+    name      String
+    email     String
+    empresa   String
+    motivo    String
+    status    String
+    createdAt DateTime @default(now())
+    idMembro  String?
+}
+
+model membro {
     id        String   @id @default(uuid())
     name      String
     email     String   @unique
-    empresa   String
-    motivo    String
+    telefone  String
+    cargo     String
+    status    String
     createdAt DateTime @default(now())
 }

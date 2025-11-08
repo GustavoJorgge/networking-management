@@ -6,6 +6,8 @@ import { serializerCompiler, validatorCompiler, hasZodFastifySchemaValidationErr
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import { createUserRoute } from './routes/create-user';
+import { get } from 'http';
+import { getUserRoute } from './routes/get-user';
 
 const server = fastify()
 
@@ -43,6 +45,7 @@ server.register(fastifySwaggerUi, {
 })
 
 server.register(createUserRoute)
+server.register(getUserRoute)
 
 
 console.log(env.DATABASE_URL)
