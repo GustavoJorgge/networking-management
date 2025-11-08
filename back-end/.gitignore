@@ -1,0 +1,5 @@
+# Ignorar arquivos de log
+*.log
+node_modules/
+dist/
+.env
