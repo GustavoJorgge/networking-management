@@ -1,7 +1,11 @@
+import 'dotenv/config'
 import fastify from 'fastify';
 import {env} from "@/env"
 import {fastifyCors} from '@fastify/cors'
 import { serializerCompiler, validatorCompiler, hasZodFastifySchemaValidationErrors } from 'fastify-type-provider-zod';
+import fastifySwagger from '@fastify/swagger';
+import fastifySwaggerUi from '@fastify/swagger-ui';
+import { createUserRoute } from './routes/create-user';
 
 const server = fastify()
 
@@ -23,6 +27,23 @@ server.setErrorHandler((error, request, reply) => {
 })
 
 server.register(fastifyCors, {origin: '*'})
+
+server.register(fastifySwagger, {
+    openapi: {
+        info: {
+            title: 'Processo Seletivo AG Sistemas',
+            description: 'API para gerenciamento de usuários e agendas',
+            version: '1.0.0',
+        },
+    },
+})
+
+server.register(fastifySwaggerUi, {
+    routePrefix: '/docs',
+})
+
+server.register(createUserRoute)
+
 
 console.log(env.DATABASE_URL)
 
