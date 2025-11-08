@@ -2,10 +2,10 @@ import { FastifyInstance } from "fastify";
 import {z} from 'zod';
 import prisma from "@/infra/prisma/client";
 
-export function createUserRoute(server: FastifyInstance) {
-    server.post('/users',{
-        schema:{
-            summary: 'Cria um novo usuario',
+export function createIntencaoRoute(server: FastifyInstance) {
+    server.post('/intencao', {
+        schema: {
+            summary: 'Cria uma nova intenção de participação',
             body: z.object({
                 name: z.string(),
                 email: z.string().email(),
@@ -19,31 +19,34 @@ export function createUserRoute(server: FastifyInstance) {
             }
         }
     },async (request, reply) => {
-      
-        const createUserBodySchema = z.object({
+
+        const newIntencaoSchema = z.object({
             name: z.string(),
             email: z.string().email(),
             empresa: z.string(),
-            motivo: z.string()
+            motivo: z.string(),
+            status: z.string().default('Pendente'),
         })
 
-        const result = createUserBodySchema.safeParse(request.body)
+        const result = newIntencaoSchema.safeParse(request.body)
 
         if (!result.success) {
             return reply.status(409).send(result.error)
         }
 
-        const { name, email, empresa, motivo } = result.data
+        const { name, email, empresa, motivo, status } = result.data
 
-        const user = await prisma.user.create({
+        const user = await prisma.intencaoParticipar.create({
             data: {
                 name,
                 email,
                 empresa,
-                motivo
+                motivo,
+                status
+                
             }
         })
 
-        return reply.status(201).send({ message: 'Usuário criado com sucesso', id: user.email});
+        return reply.status(201).send({ message: 'Intenção de ser membro criada com sucesso', id: user.id});
     });
 }

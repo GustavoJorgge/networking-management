@@ -3,10 +3,10 @@ import { z } from 'zod';
 import prisma from '@/infra/prisma/client';
 
 
-export function getUserRoute(server: FastifyInstance) {
-    server.get('/users', {
+export function getMemberRoute(server: FastifyInstance) {
+    server.get('/members', {
         schema: {
-            summary: 'Lista todos os usuários',
+            summary: 'Lista todos os membros cadastrados',
             response: {
                 200: z.array(z.object({
                     id: z.string().uuid(),
@@ -18,7 +18,7 @@ export function getUserRoute(server: FastifyInstance) {
             }
         }
     }, async (request, reply) => {
-        const users = await prisma.user.findMany()
-        return reply.status(200).send(users)
+        const members = await prisma.intencaoParticipar.findMany()
+        return reply.status(200).send(members)
     })
 }

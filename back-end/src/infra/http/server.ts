@@ -5,9 +5,10 @@ import {fastifyCors} from '@fastify/cors'
 import { serializerCompiler, validatorCompiler, hasZodFastifySchemaValidationErrors } from 'fastify-type-provider-zod';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
-import { createUserRoute } from './routes/create-user';
+import { createIntencaoRoute } from './routes/intencoes/create-intencao';
 import { get } from 'http';
-import { getUserRoute } from './routes/get-user';
+import { getMemberRoute } from './routes/membros/get-member';
+import { getIntencoesRoute } from './routes/intencoes/get-intencoes';
 
 const server = fastify()
 
@@ -44,8 +45,10 @@ server.register(fastifySwaggerUi, {
     routePrefix: '/docs',
 })
 
-server.register(createUserRoute)
-server.register(getUserRoute)
+// Registra as rotas Intenções e Membros
+server.register(createIntencaoRoute)
+server.register(getIntencoesRoute)
+server.register(getMemberRoute)
 
 
 console.log(env.DATABASE_URL)
