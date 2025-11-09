@@ -15,8 +15,9 @@ import { getIntencoesRoute } from './routes/intencoes/get-intencoes';
 import { createMemberRoute } from './routes/membros/create-member';
 import { updateStatusIntencaoRoute } from './routes/membros/update-statusIntencao';
 import { createComunicadoRoute } from './routes/comunicados/create-comunicado';
+import { getMemberByIdRoute } from './routes/membros/get-memberById';
 
-const server = fastify().withTypeProvider<ZodTypeProvider>();
+const server = fastify();
 
 server.setValidatorCompiler(validatorCompiler)
 server.setSerializerCompiler(serializerCompiler)
@@ -60,6 +61,7 @@ server.register(getIntencoesRoute)
 server.register(getMemberRoute)
 server.register(createMemberRoute)
 server.register(updateStatusIntencaoRoute)
+server.register(getMemberByIdRoute)
 // Rotas de Comunicados
 server.register(createComunicadoRoute)
 

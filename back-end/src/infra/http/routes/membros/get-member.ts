@@ -14,13 +14,14 @@ export function getMemberRoute(server: FastifyInstance) {
                     name: z.string(),
                     email: z.string().email(),
                     empresa: z.string(),
-                    motivo: z.string(),
+                    telefone: z.string(),
+                    cargo: z.string(),
                     status: z.string()
                 }))
             }
         }
     }, async (request, reply) => {
-        const members = await prisma.intencaoParticipar.findMany()
+        const members = await prisma.membro.findMany()
         return reply.status(200).send(members)
     })
 }
