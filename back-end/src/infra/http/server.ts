@@ -2,7 +2,11 @@ import 'dotenv/config'
 import fastify from 'fastify';
 import {env} from "@/env"
 import {fastifyCors} from '@fastify/cors'
-import { serializerCompiler, validatorCompiler, hasZodFastifySchemaValidationErrors } from 'fastify-type-provider-zod';
+import {
+  serializerCompiler,
+  validatorCompiler,
+  ZodTypeProvider,
+} from 'fastify-type-provider-zod';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import { createIntencaoRoute } from './routes/intencoes/create-intencao';
@@ -11,24 +15,26 @@ import { getIntencoesRoute } from './routes/intencoes/get-intencoes';
 import { createMemberRoute } from './routes/membros/create-member';
 import { updateStatusIntencaoRoute } from './routes/membros/update-statusIntencao';
 
-const server = fastify()
+const server = fastify().withTypeProvider<ZodTypeProvider>();
 
 server.setValidatorCompiler(validatorCompiler)
 server.setSerializerCompiler(serializerCompiler)
 
-server.setErrorHandler((error, request, reply) => {
- if(hasZodFastifySchemaValidationErrors(error)) {
-    return reply.status(400).send({
-        message: 'Erro de validação', 
-        issues: error.validation
-    })
-}
-
-    console.log(error)
 
 
-    return reply.status(500).send({message: 'Erro interno no servidor'})
-})
+// server.setErrorHandler((error, request, reply) => {
+// //  if(hasZodFastifySchemaValidationErrors(error)) {
+// //     return reply.status(400).send({
+// //         message: 'Erro de validação', 
+// //         issues: error.validation
+// //     })
+// }
+
+//     console.log(error)
+
+
+//     return reply.status(500).send({message: 'Erro interno no servidor'})
+// })
 
 server.register(fastifyCors, {origin: '*'})
 
