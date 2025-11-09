@@ -14,6 +14,7 @@ import { getMemberRoute } from './routes/membros/get-member';
 import { getIntencoesRoute } from './routes/intencoes/get-intencoes';
 import { createMemberRoute } from './routes/membros/create-member';
 import { updateStatusIntencaoRoute } from './routes/membros/update-statusIntencao';
+import { createComunicadoRoute } from './routes/comunicados/create-comunicado';
 
 const server = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -52,13 +53,16 @@ server.register(fastifySwaggerUi, {
     routePrefix: '/docs',
 })
 
-// Registra as rotas Intenções
+// Rotas de Intenções
 server.register(createIntencaoRoute)
 server.register(getIntencoesRoute)
-// Registra as rotas Membros
+// Rotas de Membros
 server.register(getMemberRoute)
 server.register(createMemberRoute)
 server.register(updateStatusIntencaoRoute)
+// Rotas de Comunicados
+server.register(createComunicadoRoute)
+
 
 
 console.log(env.DATABASE_URL)

@@ -13,14 +13,6 @@ export function createIntencaoRoute(server: FastifyInstance) {
                 empresa: z.string(),
                 motivo: z.string()
             }),
-            examples: [
-                {
-                    name: 'João Silva',
-                    email: 'joao.silva@example.com',
-                    empresa: 'Empresa X',
-                    motivo: 'Quero contribuir com a equipe'
-                }
-            ],
             response: {
                 201: z.object({id: z.string().uuid()}),
                 409: z.object({message: z.string().describe('Este e-mail ja esta cadastrado na base.')}),

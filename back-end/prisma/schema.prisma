@@ -28,3 +28,12 @@ model membro {
     status    String
     createdAt DateTime @default(now())
 }
+
+model comunicado {
+    id       String   @id @default(uuid())
+    titulo   String
+    conteudo String
+    autor    String
+    criadoEm DateTime @default(now())
+    idMembro String?
+}
