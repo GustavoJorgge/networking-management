@@ -23,8 +23,8 @@ model membro {
     name      String
     email     String   @unique
     empresa   String
-    telefone  String
-    cargo     String
+    telefone  String?
+    cargo     String?
     status    String
     createdAt DateTime @default(now())
 }

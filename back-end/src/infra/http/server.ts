@@ -9,6 +9,7 @@ import { createIntencaoRoute } from './routes/intencoes/create-intencao';
 import { getMemberRoute } from './routes/membros/get-member';
 import { getIntencoesRoute } from './routes/intencoes/get-intencoes';
 import { createMemberRoute } from './routes/membros/create-member';
+import { updateStatusIntencaoRoute } from './routes/membros/update-statusIntencao';
 
 const server = fastify()
 
@@ -51,6 +52,7 @@ server.register(getIntencoesRoute)
 // Registra as rotas Membros
 server.register(getMemberRoute)
 server.register(createMemberRoute)
+server.register(updateStatusIntencaoRoute)
 
 
 console.log(env.DATABASE_URL)
