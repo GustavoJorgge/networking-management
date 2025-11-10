@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@theme {
+  --font-size-xl: 2.625rem;
+  --font-size-xl-md: 2.25rem;
+  --font-size-lg: 1.5rem;
+}
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --sky-300: #8fd6ff;
+
+  --blue-800: #4431b5;
+}
