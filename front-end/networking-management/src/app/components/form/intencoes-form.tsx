@@ -6,8 +6,11 @@ import { Input } from "@/app/components/ui/input/input"
 import { TIntention } from "@/@types/member"
 import { toast } from "react-toastify"
 import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 export function IntentionForm() {
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -39,7 +42,7 @@ export function IntentionForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
         <Input
@@ -92,7 +95,7 @@ export function IntentionForm() {
             minLength: { value: 10, message: "O motivo deve ter no mínimo 10 caracteres" },
             maxLength: { value: 1000, message: "O motivo deve ter no máximo 1000 caracteres" },
           })}
-          className={`w-full h-28 resize-none px-4 py-2 rounded-lg border bg-gray-50 text-gray-800 text-base shadow-sm transition-all duration-200 ease-in-out ${
+          className={`w-full h-23 resize-none px-4 py-2 rounded-lg border bg-gray-50 text-gray-800 text-base shadow-sm transition-all duration-200 ease-in-out ${
             errors.motivo ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-sky-500"
           }`}
           placeholder="Conte um pouco sobre seu interesse..."
@@ -114,6 +117,13 @@ export function IntentionForm() {
         className="w-full bg-sky-600 text-white font-medium py-3 rounded-lg hover:bg-sky-700 transition-colors disabled:opacity-50"
         >
         {isSubmitting ? "Enviando..." : "Enviar Intenção"}
+      </button>
+      <button
+        type="button"
+        onClick={() => router.push("/intentions/list")}
+        className="w-full bg-gray-600 text-white font-medium py-3 rounded-lg hover:bg-gray-700 transition-colors"
+        >
+        Ver Intenções Cadastradas
       </button>
     </form>
   )

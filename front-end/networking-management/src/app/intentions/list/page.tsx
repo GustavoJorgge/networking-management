@@ -1,0 +1,108 @@
+'use client'
+
+import { Intention } from "@/@types/intention";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { CheckCircle, XCircle } from "lucide-react";
+
+export default function ListaIntencoes() {
+  const [intencoes, setIntencoes] = useState<Intention[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchIntencoes();
+  }, []);
+
+  async function fetchIntencoes() {
+    try {
+      const { data } = await axios.get("http://localhost:3333/intencoes");
+      console.log(data);
+      setIntencoes(data);
+    } catch (error) {
+      toast.error("Erro ao carregar intenções");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function atualizarStatus(id: string, status: "APROVADA" | "REJEITADA") {
+  try {
+    console.log({ id, status });
+
+    await axios.put(`http://localhost:3333/intencoes/${id}/status`, {
+      status,
+    });
+    toast.success(`Intenção ${status === "APROVADA" ? "aprovada" : "rejeitada"} com sucesso`);
+    fetchIntencoes();
+  } catch (error) {
+    toast.error("Erro ao atualizar status");
+    console.error(error);
+  }
+}
+
+  if (loading) {
+    return <p className="text-center mt-6 text-gray-500">Carregando intenções...</p>;
+  }
+
+  return (
+    <div className="max-w-4xl mx-auto mt-10 bg-white rounded-2xl shadow-lg p-6">
+      <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+        Intenções de Participar ({intencoes.length})
+      </h2>
+
+      {intencoes.length === 0 ? (
+        <p className="text-gray-500 text-center">Nenhuma intenção encontrada.</p>
+      ) : (
+        <ul className="divide-y divide-gray-200">
+          {intencoes.map((item) => (
+            <li key={item.id} className="py-4">
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className="font-semibold text-gray-800">{item.name}</p>
+                  <p className="text-sm text-gray-500">{item.email}</p>
+                  <p className="text-sm text-gray-500">{item.empresa}</p>
+                  <p className="text-sm text-gray-600 mt-2">{item.motivo}</p>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                      item.status === "APROVADA"
+                        ? "bg-green-100 text-green-700"
+                        : item.status === "REJEITADA"
+                        ? "bg-red-100 text-red-700"
+                        : "bg-yellow-100 text-yellow-700"
+                    }`}
+                  >
+                    {item.status}
+                  </span>
+
+                  {item.status === "Pendente" && (
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => atualizarStatus(item.id, "APROVADA")}
+                        className="text-green-600 hover:text-green-800"
+                        title="Aprovar"
+                      >
+                        <CheckCircle size={22} />
+                      </button>
+                      <button
+                        onClick={() => atualizarStatus(item.id, "REJEITADA")}
+                        className="text-red-600 hover:text-red-800"
+                        title="Rejeitar"
+                      >
+                        <XCircle size={22} />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}

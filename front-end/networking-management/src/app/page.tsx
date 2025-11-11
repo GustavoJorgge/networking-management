@@ -4,8 +4,8 @@ import { Title } from "./components/title/title"
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 via-sky-50 to-gray-100">
-      <div className="w-full max-w-2xl bg-white shadow-xl rounded-xl p-10">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-5">
+      <div className="w-full h-full max-h-screen max-w-xl bg-white shadow-xl rounded-xl p-6">
         <div className="text-center">
           <Title>Bem-vindo ao Sistema de Admissão de Membros</Title>
 
@@ -15,7 +15,7 @@ export default function Home() {
           </Content>
         </div>
 
-         <div className="mt-8">
+         <div className="mt-7">
           <IntentionForm />
         </div>
       </div>
