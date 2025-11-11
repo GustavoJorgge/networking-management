@@ -1,46 +1,29 @@
-import 'dotenv/config'
-import fastify from 'fastify';
-import {env} from "@/env"
-import {fastifyCors} from '@fastify/cors'
-import {
-  serializerCompiler,
-  validatorCompiler,
-  ZodTypeProvider,
-} from 'fastify-type-provider-zod';
+import { env } from "@/env";
+import { fastifyCors } from '@fastify/cors';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
+import 'dotenv/config';
+import fastify from 'fastify';
+import {
+    serializerCompiler,
+    validatorCompiler
+} from 'fastify-type-provider-zod';
+import { createComunicadoRoute } from './routes/comunicados/create-comunicado';
+import { getComunicadosRoute } from './routes/comunicados/get-comunicados';
 import { createIntencaoRoute } from './routes/intencoes/create-intencao';
-import { getMemberRoute } from './routes/membros/get-member';
+import { deleteIntencaoRoute } from './routes/intencoes/delete-intencao';
 import { getIntencoesRoute } from './routes/intencoes/get-intencoes';
 import { createMemberRoute } from './routes/membros/create-member';
-import { updateStatusIntencaoRoute } from './routes/membros/update-statusIntencao';
-import { createComunicadoRoute } from './routes/comunicados/create-comunicado';
+import { getMemberRoute } from './routes/membros/get-member';
 import { getMemberByIdRoute } from './routes/membros/get-memberById';
-import { getComunicadosRoute } from './routes/comunicados/get-comunicados';
-import { deleteIntencaoRoute } from './routes/intencoes/delete-intencao';
+import { updateStatusIntencaoRoute } from './routes/membros/update-statusIntencao';
 
 const server = fastify();
 
 server.setValidatorCompiler(validatorCompiler)
 server.setSerializerCompiler(serializerCompiler)
 
-
-
-// server.setErrorHandler((error, request, reply) => {
-// //  if(hasZodFastifySchemaValidationErrors(error)) {
-// //     return reply.status(400).send({
-// //         message: 'Erro de validação', 
-// //         issues: error.validation
-// //     })
-// }
-
-//     console.log(error)
-
-
-//     return reply.status(500).send({message: 'Erro interno no servidor'})
-// })
-
-server.register(fastifyCors, {origin: '*'})
+server.register(fastifyCors, { origin: '*' })
 
 server.register(fastifySwagger, {
     openapi: {
@@ -73,6 +56,6 @@ server.register(getComunicadosRoute)
 
 console.log(env.DATABASE_URL)
 
-server.listen({port:3333, host: '0.0.0.0'}).then(() => {
+server.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
     console.log('Servidor rodando na porta 3333')
 })

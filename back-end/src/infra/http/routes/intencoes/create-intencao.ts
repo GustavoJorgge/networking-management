@@ -1,6 +1,6 @@
-import { FastifyInstance } from "fastify";
-import {z} from 'zod';
 import prisma from "@/infra/prisma/client";
+import { FastifyInstance } from "fastify";
+import { z } from 'zod';
 
 export function createIntencaoRoute(server: FastifyInstance) {
     server.post('/intencoes', {
@@ -14,12 +14,12 @@ export function createIntencaoRoute(server: FastifyInstance) {
                 motivo: z.string()
             }),
             response: {
-                201: z.object({id: z.string().uuid()}),
-                409: z.object({message: z.string().describe('Este e-mail ja esta cadastrado na base.')}),
-                    
+                201: z.object({ id: z.string().uuid(), message: z.string() }),
+                409: z.object({ message: z.string().describe('Este e-mail ja esta cadastrado na base.') }),
+
             }
         }
-    },async (request, reply) => {
+    }, async (request, reply) => {
 
         const newIntencaoSchema = z.object({
             name: z.string(),
@@ -44,10 +44,10 @@ export function createIntencaoRoute(server: FastifyInstance) {
                 empresa,
                 motivo,
                 status
-                
+
             }
         })
 
-        return reply.status(201).send({ message: 'Intenção de ser membro criada com sucesso', id: user.id});
+        return reply.status(201).send({ message: 'Intenção de ser membro criada com sucesso', id: user.id });
     });
 }
