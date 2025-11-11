@@ -5,6 +5,7 @@ import { api } from "@/lib/api/axios"
 import { Input } from "@/app/components/ui/input/input"
 import { TIntention } from "@/@types/member"
 import { toast } from "react-toastify"
+import { useEffect } from "react"
 
 export function IntentionForm() {
   const {
@@ -16,6 +17,14 @@ export function IntentionForm() {
   } = useForm<TIntention>()
 
   const motivoValue = watch("motivo", "")
+
+   useEffect(() => {
+    if (motivoValue.length < 10) {
+      toast.warn("O motivo deve ter no mínimo 10 caracteres")
+    } else if (motivoValue.length > 1000) {
+      toast.error("O motivo ultrapassou o limite de 1000 caracteres")
+    }
+  }, [motivoValue])
 
   const onSubmit = async (data: TIntention) => {
     console.log("Form data:", data)
@@ -80,7 +89,7 @@ export function IntentionForm() {
         <textarea
           {...register("motivo", {
             required: "O motivo é obrigatório",
-            minLength: { value: 10, message: "O motivo deve ter pelo menos 10 caracteres" },
+            minLength: { value: 10, message: "O motivo deve ter no mínimo 10 caracteres" },
             maxLength: { value: 1000, message: "O motivo deve ter no máximo 1000 caracteres" },
           })}
           className={`w-full h-28 resize-none px-4 py-2 rounded-lg border bg-gray-50 text-gray-800 text-base shadow-sm transition-all duration-200 ease-in-out ${
