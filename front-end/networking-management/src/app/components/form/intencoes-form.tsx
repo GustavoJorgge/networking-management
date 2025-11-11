@@ -5,6 +5,7 @@ import { api } from "@/lib/api/axios"
 import { Input } from "@/app/components/ui/input/input"
 import { TIntention } from "@/@types/member"
 import { useState } from "react"
+import { toast } from "react-toastify"
 
 export function IntentionForm() {
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } =
@@ -13,14 +14,16 @@ export function IntentionForm() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
   const onSubmit = async (data: TIntention) => {
+    console.log("Form data:", data)
     try {
       await api.post("/intencoes", data)
-      console.log("Intenção criada com sucesso:", data)
       setSuccessMessage("Membro criado com sucesso!")
+      toast.success("Intenção enviada com sucesso!")
       reset()
     } catch (error) {
       console.error("Erro ao criar membro:", error)
       setSuccessMessage("Erro ao criar membro. Tente novamente.")
+      toast.error("Erro ao enviar intenção. Tente novamente mais tarde.")
     }
   }
 
@@ -62,7 +65,6 @@ export function IntentionForm() {
           className="w-full h-28 resize-none px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 text-gray-800 text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500 placeholder:text-gray-400 transition-all duration-200 ease-in-out"
           placeholder="Conte um pouco sobre seu interesse..."
         />
-        {errors.motivo && <p className="text-sm text-red-500">{errors.motivo.message}</p>}
       </div>
 
       <button
@@ -73,9 +75,7 @@ export function IntentionForm() {
         {isSubmitting ? "Enviando..." : "Enviar Intenção"}
       </button>
 
-      {successMessage && (
-        <p className="text-center text-sm text-green-600">{successMessage}</p>
-      )}
+     
     </form>
   )
 }
