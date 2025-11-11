@@ -17,6 +17,7 @@ import { updateStatusIntencaoRoute } from './routes/membros/update-statusIntenca
 import { createComunicadoRoute } from './routes/comunicados/create-comunicado';
 import { getMemberByIdRoute } from './routes/membros/get-memberById';
 import { getComunicadosRoute } from './routes/comunicados/get-comunicados';
+import { deleteIntencaoRoute } from './routes/intencoes/delete-intencao';
 
 const server = fastify();
 
@@ -58,6 +59,7 @@ server.register(fastifySwaggerUi, {
 // Rotas de Intenções
 server.register(createIntencaoRoute)
 server.register(getIntencoesRoute)
+server.register(deleteIntencaoRoute)
 // Rotas de Membros
 server.register(getMemberRoute)
 server.register(createMemberRoute)
