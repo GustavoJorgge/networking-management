@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { z } from "zod";
 import prisma from "@/infra/prisma/client";
+import { create } from "domain";
 
 export async function createMemberRoute(server: FastifyInstance) {
   server.post("/members", {
@@ -13,6 +14,7 @@ export async function createMemberRoute(server: FastifyInstance) {
         empresa: z.string(),
         telefone: z.string(),
         cargo: z.string(),
+        createdAt: z.date().default(new Date()),
       }),
     },
   }, async (request, reply) => {
@@ -22,9 +24,10 @@ export async function createMemberRoute(server: FastifyInstance) {
       empresa: z.string(),
       telefone: z.string(),
       cargo: z.string(),
+      createdAt: z.date().default(new Date()),
     });
 
-    const { name, email, empresa, telefone, cargo } = bodySchema.parse(request.body);
+    const { name, email, empresa, telefone, cargo, createdAt } = bodySchema.parse(request.body);
 
     const member = await prisma.membro.create({
       data: {
@@ -34,6 +37,7 @@ export async function createMemberRoute(server: FastifyInstance) {
         telefone,
         cargo,
         status: "Ativo",
+        createdAt,
       },
     });
 

@@ -18,7 +18,8 @@ export function getMemberByIdRoute(server: FastifyInstance) {
                     empresa: z.string(),
                     telefone: z.string(),
                     cargo: z.string(),
-                    status: z.string()
+                    status: z.string(),
+                    createdAt: z.date(),
                 }),
                 404: z.object({ message: z.string().describe('Membro não encontrado.') }),
                 500: z.object({ message: z.string().describe('Erro interno do servidor.') }),

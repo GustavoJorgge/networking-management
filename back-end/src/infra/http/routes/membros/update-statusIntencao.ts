@@ -22,7 +22,8 @@ export function updateStatusIntencaoRoute(server: FastifyInstance) {
             email: z.string().email(),
             empresa: z.string(),
             motivo: z.string(),
-            status: z.string()
+            status: z.string(),
+            createdAt: z.date(),
           })
         }),
         404: z.object({
@@ -67,7 +68,8 @@ export function updateStatusIntencaoRoute(server: FastifyInstance) {
             empresa: intencao.empresa,
             telefone: '',
             cargo: '',
-            status: 'Ativo'
+            status: 'Ativo',
+            createdAt: new Date()
           }
         });
       }

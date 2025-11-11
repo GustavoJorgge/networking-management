@@ -16,7 +16,8 @@ export function getMemberRoute(server: FastifyInstance) {
                     empresa: z.string(),
                     telefone: z.string(),
                     cargo: z.string(),
-                    status: z.string()
+                    status: z.string(),
+                    createdAt: z.date(),
                 }))
             }
         }
