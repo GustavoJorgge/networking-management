@@ -4,7 +4,7 @@ import { Intention } from "@/@types/intention";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { CheckCircle, XCircle } from "lucide-react";
+import { CheckCircle, XCircle, Trash2 } from "lucide-react";
 
 export default function ListaIntencoes() {
   const [intencoes, setIntencoes] = useState<Intention[]>([]);
@@ -17,7 +17,6 @@ export default function ListaIntencoes() {
   async function fetchIntencoes() {
     try {
       const { data } = await axios.get("http://localhost:3333/intencoes");
-      console.log(data);
       setIntencoes(data);
     } catch (error) {
       toast.error("Erro ao carregar intenções");
@@ -28,19 +27,27 @@ export default function ListaIntencoes() {
   }
 
   async function atualizarStatus(id: string, status: "APROVADA" | "REJEITADA") {
-  try {
-    console.log({ id, status });
-
-    await axios.put(`http://localhost:3333/intencoes/${id}/status`, {
-      status,
-    });
-    toast.success(`Intenção ${status === "APROVADA" ? "aprovada" : "rejeitada"} com sucesso`);
-    fetchIntencoes();
-  } catch (error) {
-    toast.error("Erro ao atualizar status");
-    console.error(error);
+    try {
+      await axios.put(`http://localhost:3333/intencoes/${id}/status`, { status });
+      toast.success(`Intenção ${status === "APROVADA" ? "aprovada" : "rejeitada"} com sucesso`);
+      fetchIntencoes();
+    } catch (error) {
+      toast.error("Erro ao atualizar status");
+      console.error(error);
+    }
   }
-}
+
+  async function deletarIntencao(id: string) {
+    try {
+      console.log('Deletando intenção com ID:', id);
+      await axios.delete(`http://localhost:3333/intencoes/${id}`);
+      toast.success("Intenção excluída com sucesso");
+      setIntencoes(prev => prev.filter(item => item.id !== id));
+    } catch (error) {
+      toast.error("Erro ao excluir intenção");
+      console.error(error);
+    }
+  }
 
   if (loading) {
     return <p className="text-center mt-6 text-gray-500">Carregando intenções...</p>;
@@ -67,6 +74,7 @@ export default function ListaIntencoes() {
                 </div>
 
                 <div className="flex items-center gap-3">
+                  {/* STATUS */}
                   <span
                     className={`px-3 py-1 rounded-full text-sm font-semibold ${
                       item.status === "APROVADA"
@@ -79,24 +87,36 @@ export default function ListaIntencoes() {
                     {item.status}
                   </span>
 
-                  {item.status === "Pendente" && (
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => atualizarStatus(item.id, "APROVADA")}
-                        className="text-green-600 hover:text-green-800"
-                        title="Aprovar"
-                      >
-                        <CheckCircle size={22} />
-                      </button>
-                      <button
-                        onClick={() => atualizarStatus(item.id, "REJEITADA")}
-                        className="text-red-600 hover:text-red-800"
-                        title="Rejeitar"
-                      >
-                        <XCircle size={22} />
-                      </button>
-                    </div>
-                  )}
+                  {/* BOTÕES DE AÇÃO */}
+                  <div className="flex gap-2">
+                    {item.status === "Pendente" && (
+                      <>
+                        <button
+                          onClick={() => atualizarStatus(item.id, "APROVADA")}
+                          className="text-green-600 hover:text-green-800"
+                          title="Aprovar"
+                        >
+                          <CheckCircle size={22} />
+                        </button>
+                        <button
+                          onClick={() => atualizarStatus(item.id, "REJEITADA")}
+                          className="text-red-600 hover:text-red-800"
+                          title="Rejeitar"
+                        >
+                          <XCircle size={22} />
+                        </button>
+                      </>
+                    )}
+
+                    {/* Lixeira sempre visível */}
+                    <button
+                      onClick={() => deletarIntencao(item.id)}
+                      className="text-gray-500 hover:text-red-700"
+                      title="Excluir intenção"
+                    >
+                      <Trash2 size={20} />
+                    </button>
+                  </div>
                 </div>
               </div>
             </li>

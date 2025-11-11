@@ -11,7 +11,7 @@ export function deleteIntencaoRoute(server: FastifyInstance) {
                 id: z.string().uuid()
             }),
             response: {
-                204: z.object({message: z.string().describe('Intenção deletada com sucesso.')}),
+                200: z.object({message: z.string().describe('Intenção deletada com sucesso.')}),
                 404: z.object({ message: z.string().describe('Intenção não encontrada.') }),
                 500: z.object({ message: z.string().describe('Erro interno do servidor.') }),
             }
@@ -31,7 +31,7 @@ export function deleteIntencaoRoute(server: FastifyInstance) {
                 return reply.status(404).send({ message: 'Intenção não encontrada.' });
             }
 
-            return reply.status(204).send(null);
+            return reply.status(200).send({ message: 'Intenção deletada com sucesso.' });
         } catch (error) {
             return reply.status(500).send({ message: 'Erro interno do servidor.' });
         }
