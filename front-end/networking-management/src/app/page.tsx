@@ -1,6 +1,6 @@
 import { Content } from "./components/content/content"
+import { IntentionForm } from "./components/form/intencoes-form"
 import { Title } from "./components/title/title"
-import { Input } from "./components/ui/input/input"
 
 export default function Home() {
   return (
@@ -15,50 +15,9 @@ export default function Home() {
           </Content>
         </div>
 
-        <form className="mt-5 space-y-3">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-              Nome:
-            </label>
-            <Input id="name" name="name" placeholder="Digite seu nome completo" required />
-          </div>
-
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email:
-            </label>
-            <Input id="email" name="email" type="email" placeholder="Seu melhor e-mail" required />
-          </div>
-
-          <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-              Telefone:
-            </label>
-            <Input id="phone" name="phone" type="tel" placeholder="(00) 00000-0000" required />
-          </div>
-
-          <div>
-            <label htmlFor="motivo" className="block text-sm font-medium text-gray-700 mb-1">
-              Motivo de Interesse:
-            </label>
-            <textarea
-              id="motivo"
-              name="motivo"
-              required
-              placeholder="Conte um pouco sobre seu interesse..."
-              className="w-full h-28 resize-none px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 text-gray-800 text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 placeholder:text-gray-400 transition-all duration-200 ease-in-out"
-            />
-          </div>
-
-          <div className="pt-4">
-            <button
-              type="submit"
-              className="w-full bg-sky-600 text-white font-medium py-3 rounded-lg hover:bg-sky-700 transition-colors"
-            >
-              Enviar Intenção
-            </button>
-          </div>
-        </form>
+         <div className="mt-8">
+          <IntentionForm />
+        </div>
       </div>
     </div>
   )
