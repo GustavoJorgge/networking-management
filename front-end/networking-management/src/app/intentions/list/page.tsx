@@ -1,10 +1,11 @@
 'use client'
 
 import { Intention } from "@/@types/intention";
+import { api } from "@/lib/api/axios";
 import axios from "axios";
+import { CheckCircle, Trash2, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { CheckCircle, XCircle, Trash2 } from "lucide-react";
 
 export default function ListaIntencoes() {
   const [intencoes, setIntencoes] = useState<Intention[]>([]);
@@ -16,7 +17,7 @@ export default function ListaIntencoes() {
 
   async function fetchIntencoes() {
     try {
-      const { data } = await axios.get("http://localhost:3333/intencoes");
+      const { data } = await axios.get(api.defaults.baseURL + "/intencoes");
       setIntencoes(data);
     } catch (error) {
       toast.error("Erro ao carregar intenções");
@@ -28,7 +29,7 @@ export default function ListaIntencoes() {
 
   async function atualizarStatus(id: string, status: "APROVADA" | "REJEITADA") {
     try {
-      await axios.put(`http://localhost:3333/intencoes/${id}/status`, { status });
+      await axios.put(api.defaults.baseURL + `/intencoes/${id}/status`, { status });
       toast.success(`Intenção ${status === "APROVADA" ? "aprovada" : "rejeitada"} com sucesso`);
       fetchIntencoes();
     } catch (error) {
@@ -40,7 +41,7 @@ export default function ListaIntencoes() {
   async function deletarIntencao(id: string) {
     try {
       console.log('Deletando intenção com ID:', id);
-      await axios.delete(`http://localhost:3333/intencoes/${id}`);
+      await axios.delete(api.defaults.baseURL + `/intencoes/${id}`);
       toast.success("Intenção excluída com sucesso");
       setIntencoes(prev => prev.filter(item => item.id !== id));
     } catch (error) {

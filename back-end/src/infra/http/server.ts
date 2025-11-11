@@ -14,6 +14,7 @@ import { getComunicadosRoute } from './routes/comunicados/get-comunicados';
 import { createIntencaoRoute } from './routes/intencoes/create-intencao';
 import { deleteIntencaoRoute } from './routes/intencoes/delete-intencao';
 import { getIntencoesRoute } from './routes/intencoes/get-intencoes';
+import { getEstatisticasIntencoesRoute } from "./routes/intencoes/get-intencoesEstatisticas";
 import { createMemberRoute } from './routes/membros/create-member';
 import { getMemberRoute } from './routes/membros/get-member';
 import { getMemberByEmailRoute } from "./routes/membros/get-memberByEmail";
@@ -46,6 +47,7 @@ server.register(fastifySwaggerUi, {
 server.register(createIntencaoRoute)
 server.register(getIntencoesRoute)
 server.register(deleteIntencaoRoute)
+server.register(getEstatisticasIntencoesRoute)
 // Rotas de Membros
 server.register(getMemberRoute)
 server.register(createMemberRoute)
