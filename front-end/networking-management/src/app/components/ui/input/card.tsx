@@ -1,21 +1,24 @@
-'use client'
-import { FC, ReactNode } from "react"
+import React, { HTMLAttributes } from "react";
 
-interface CardProps {
-  title?: string
-  children?: ReactNode
-  footer?: ReactNode
-  className?: string
-}
+const Card = React.forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
+	<div ref={ref} className={`rounded-lg border bg-card text-card-foreground shadow-sm  p-4  ${className ?? ''}`} {...props} />
+));
+Card.displayName = 'Card'
 
-const Card: FC<CardProps> = ({ title, footer, children, className = '' }) => {
-  return (
-    <div className={`bg-white border border-gray-200 shadow-sm rounded-lg p-4 transition-transform hover:shadow-md ${className}`}>
-      {title && <h3 className="text-lg font-semibold text-gray-800 mb-2">{title}</h3>}
-      <div className="mb-3">{children}</div>
-      {footer && <div className="text-xs text-gray-500">{footer}</div>}
-    </div>
-  )
-}
+const CardTitle = React.forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadingElement>>(
+  ({ className, ...props }, ref) =>
+    (<h3 ref={ref} className={`flex items-center gap-2 text-1xl font-semibold leading-none tracking-tight justify-between flex-row-reverse ${className ?? ''}`} {...props} />)
+);
+CardTitle.displayName = 'CardTitle'
 
-export default Card
+const CardDescription = React.forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(({ className, ...props }, ref) => (<p ref={ref} className={`text-sm text-muted-foreground ${className}`} {...props} />));
+CardDescription.displayName = 'CardDescription'
+
+const CardContent = React.forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (<div ref={ref} className={` p-1 text-lg font-semibold ${className}`} {...props} />));
+CardContent.displayName = 'CardContent'
+
+const CardValue = React.forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(({ className, ...props }, ref) => (<p ref={ref} className={`flex items-center p-6 pt-0 ${className}`} {...props} />));
+CardValue.displayName = 'CardValue'
+
+export { Card, CardContent, CardDescription, CardTitle, CardValue };
+

@@ -1,9 +1,10 @@
 'use client'
 
 import { Intention } from "@/@types/intention";
+import { Card, CardContent, CardTitle } from "@/app/components/ui/input/card";
 import { api } from "@/lib/api/axios";
 import axios from "axios";
-import { CheckCircle, Trash2, XCircle } from "lucide-react";
+import { CheckCircle, Trash2, UserPlus, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -50,12 +51,48 @@ export default function ListaIntencoes() {
     }
   }
 
+
   if (loading) {
     return <p className="text-center mt-6 text-gray-500">Carregando intenções...</p>;
   }
 
   return (
     <div className="max-w-4xl mx-auto mt-10 bg-white rounded-2xl shadow-lg p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
+
+        <Card>
+          <CardTitle>
+            <UserPlus className="w-5 h-5 text-sky-700" aria-hidden="true" />
+            Pendentes
+          </CardTitle>
+          <CardContent>0</CardContent>
+        </Card>
+
+        <Card>
+          <CardTitle>
+            <UserPlus className="w-5 h-5 text-sky-700" aria-hidden="true" />
+            Aprovados
+          </CardTitle>
+          <CardContent>0</CardContent>
+        </Card>
+
+        <Card>
+          <CardTitle>
+            <UserPlus className="w-5 h-5 text-sky-700" aria-hidden="true" />
+            Rejeitados
+          </CardTitle>
+          <CardContent>0</CardContent>
+        </Card>
+
+        <Card>
+          <CardTitle>
+            <UserPlus className="w-5 h-5 text-sky-700" aria-hidden="true" />
+            Total
+          </CardTitle>
+          <CardContent>0</CardContent>
+        </Card>
+
+      </div>
       <h2 className="text-2xl font-semibold mb-4 text-gray-800">
         Intenções de Participar ({intencoes.length})
       </h2>
@@ -77,13 +114,12 @@ export default function ListaIntencoes() {
                 <div className="flex items-center gap-3">
                   {/* STATUS */}
                   <span
-                    className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                      item.status === "APROVADA"
-                        ? "bg-green-100 text-green-700"
-                        : item.status === "REJEITADA"
+                    className={`px-3 py-1 rounded-full text-sm font-semibold ${item.status === "APROVADA"
+                      ? "bg-green-100 text-green-700"
+                      : item.status === "REJEITADA"
                         ? "bg-red-100 text-red-700"
                         : "bg-yellow-100 text-yellow-700"
-                    }`}
+                      }`}
                   >
                     {item.status}
                   </span>
