@@ -19,7 +19,11 @@ export function getIntencoesRoute(server: FastifyInstance) {
             }
         }
     }, async (request, reply) => {
-        const intencoes = await prisma.intencaoParticipar.findMany()
+        const intencoes = await prisma.intencaoParticipar.findMany({
+            orderBy: {
+                createdAt: 'desc'
+            }
+        })
         return reply.status(200).send(intencoes)
     })
 }
