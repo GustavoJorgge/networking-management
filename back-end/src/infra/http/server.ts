@@ -5,6 +5,7 @@ import fastifySwaggerUi from '@fastify/swagger-ui';
 import 'dotenv/config';
 import fastify from 'fastify';
 import {
+    jsonSchemaTransform,
     serializerCompiler,
     validatorCompiler
 } from 'fastify-type-provider-zod';
@@ -34,6 +35,7 @@ server.register(fastifySwagger, {
             version: '1.0.0',
         },
     },
+    transform: jsonSchemaTransform
 })
 
 server.register(fastifySwaggerUi, {

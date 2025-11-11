@@ -1,9 +1,10 @@
-import { FastifyInstance } from 'fastify';
-import { z } from 'zod';
 import prisma from '@/infra/prisma/client';
+import { FastifyInstance } from 'fastify';
+import { ZodTypeProvider } from 'fastify-type-provider-zod';
+import { z } from 'zod';
 
 export function updateStatusIntencaoRoute(server: FastifyInstance) {
-  server.put('/intencoes/:id/status', {
+  server.withTypeProvider<ZodTypeProvider>().put('/intencoes/:id/status', {
     schema: {
       summary: 'Atualiza o status de uma intenção para APROVADA ou REJEITADA. Caso aprovada, cria um novo membro.',
       tags: ['Intenções'],

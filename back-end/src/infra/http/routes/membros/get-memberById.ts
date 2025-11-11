@@ -1,9 +1,10 @@
-import { FastifyInstance } from 'fastify';
-import { z } from 'zod';
 import prisma from '@/infra/prisma/client';
+import { FastifyInstance } from 'fastify';
+import { ZodTypeProvider } from 'fastify-type-provider-zod';
+import { z } from 'zod';
 
 export function getMemberByIdRoute(server: FastifyInstance) {
-    server.get('/members/:id', {
+    server.withTypeProvider<ZodTypeProvider>().get('/members/:id', {
         schema: {
             summary: 'Obtém um membro pelo ID',
             tags: ["Membros"],
@@ -40,6 +41,15 @@ export function getMemberByIdRoute(server: FastifyInstance) {
             return reply.status(404).send({ message: 'Membro não encontrado.' });
         }
 
-        return reply.status(201).send(member);
+        return reply.status(201).send({
+            id: member.id,
+            name: member.name,
+            email: member.email,
+            empresa: member.empresa,
+            telefone: member.telefone ?? '',
+            cargo: member.cargo ?? '',
+            status: member.status,
+            createdAt: member.createdAt,
+        });
     });
 }
