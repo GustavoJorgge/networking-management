@@ -15,6 +15,7 @@ import { deleteIntencaoRoute } from './routes/intencoes/delete-intencao';
 import { getIntencoesRoute } from './routes/intencoes/get-intencoes';
 import { createMemberRoute } from './routes/membros/create-member';
 import { getMemberRoute } from './routes/membros/get-member';
+import { getMemberByEmailRoute } from "./routes/membros/get-memberByEmail";
 import { getMemberByIdRoute } from './routes/membros/get-memberById';
 import { updateStatusIntencaoRoute } from './routes/membros/update-statusIntencao';
 
@@ -48,6 +49,7 @@ server.register(getMemberRoute)
 server.register(createMemberRoute)
 server.register(updateStatusIntencaoRoute)
 server.register(getMemberByIdRoute)
+server.register(getMemberByEmailRoute)
 // Rotas de Comunicados
 server.register(createComunicadoRoute)
 server.register(getComunicadosRoute)
