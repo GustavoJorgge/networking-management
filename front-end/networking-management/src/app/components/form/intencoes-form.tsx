@@ -1,12 +1,11 @@
 'use client'
 
-import { useForm } from "react-hook-form"
-import { api } from "@/lib/api/axios"
-import { Input } from "@/app/components/ui/input/input"
 import { TIntention } from "@/@types/member"
-import { toast } from "react-toastify"
-import { useEffect } from "react"
+import { Input } from "@/app/components/ui/input/input"
+import { api } from "@/lib/api/axios"
 import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import { toast } from "react-toastify"
 
 export function IntentionForm() {
   const router = useRouter()
@@ -21,13 +20,13 @@ export function IntentionForm() {
 
   const motivoValue = watch("motivo", "")
 
-   useEffect(() => {
-    if (motivoValue.length < 10) {
-      toast.warn("O motivo deve ter no mínimo 10 caracteres")
-    } else if (motivoValue.length > 1000) {
-      toast.error("O motivo ultrapassou o limite de 1000 caracteres")
-    }
-  }, [motivoValue])
+  //  useEffect(() => {
+  //   if (motivoValue.length < 10) {
+  //     toast.warn("O motivo deve ter no mínimo 10 caracteres")
+  //   } else if (motivoValue.length > 1000) {
+  //     toast.error("O motivo ultrapassou o limite de 1000 caracteres")
+  //   }
+  // }, [motivoValue])
 
   const onSubmit = async (data: TIntention) => {
     console.log("Form data:", data)
