@@ -13,6 +13,7 @@ import {
 
 import { loginRoute } from "./routes/authRoute/authRoute";
 import { createComunicadoRoute } from './routes/comunicados/create-comunicado';
+import { deleteComunicadoRoute } from "./routes/comunicados/delete-comunicado";
 import { getComunicadosRoute } from './routes/comunicados/get-comunicados';
 import { createIntencaoRoute } from './routes/intencoes/create-intencao';
 import { deleteIntencaoRoute } from './routes/intencoes/delete-intencao';
@@ -86,6 +87,7 @@ server.register(getMemberByEmailRoute);
 // Rotas de Comunicados
 server.register(createComunicadoRoute);
 server.register(getComunicadosRoute);
+server.register(deleteComunicadoRoute)
 
 // Rotas de Perfil
 server.register(getProfileRoute)

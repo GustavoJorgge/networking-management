@@ -1,6 +1,6 @@
+import prisma from "@/infra/prisma/client";
 import { FastifyInstance } from "fastify";
 import { z } from "zod";
-import prisma from "@/infra/prisma/client";
 
 export function createComunicadoRoute(server: FastifyInstance) {
   server.post('/comunicados', {
@@ -10,8 +10,6 @@ export function createComunicadoRoute(server: FastifyInstance) {
       body: z.object({
         titulo: z.string(),
         conteudo: z.string(),
-        autor: z.string(),
-        idMembro: z.string().uuid().optional()
       }),
       response: {
         201: z.object({
@@ -20,10 +18,13 @@ export function createComunicadoRoute(server: FastifyInstance) {
           conteudo: z.string(),
           autor: z.string(),
           criadoEm: z.string(),
-          idMembro: z.string().uuid().nullable()
+          idMembro: z.string().uuid()
         }),
-        403: z.object({
-          message: z.string().describe('Usuário sem permissão para criar comunicados.')
+        401: z.object({
+          message: z.string().describe('Usuário não autenticado.')
+        }),
+        400: z.object({
+          message: z.string().describe('Dados inválidos.')
         }),
         500: z.object({
           message: z.string().describe('Erro interno do servidor.')
@@ -34,25 +35,37 @@ export function createComunicadoRoute(server: FastifyInstance) {
     const bodySchema = z.object({
       titulo: z.string(),
       conteudo: z.string(),
-      autor: z.string(),
-      idMembro: z.string().uuid()
     });
 
     const result = bodySchema.safeParse(request.body);
 
     if (!result.success) {
-      return reply.status(403).send({ message: 'Dados inválidos.' });
+      return reply.status(400).send({ message: 'Dados inválidos.' });
     }
 
-    const { titulo, conteudo, autor, idMembro } = result.data;
+    const { titulo, conteudo } = result.data;
 
     try {
+      // Extrai o ID do JWT (que você definiu como 'id' no login)
+      const user = request.user as { id: string; email: string };
+      const userId = user.id;
+
+      // Busca o nome do usuário no banco
+      const usuario = await prisma.membro.findUnique({
+        where: { id: userId },
+        select: { name: true }
+      });
+
+      if (!usuario) {
+        return reply.status(401).send({ message: 'Usuário não encontrado.' });
+      }
+
       const comunicado = await prisma.comunicado.create({
         data: {
           titulo,
           conteudo,
-          autor,
-          idMembro,
+          autor: usuario.name,
+          idMembro: userId,
           criadoEm: new Date()
         }
       });
@@ -66,7 +79,7 @@ export function createComunicadoRoute(server: FastifyInstance) {
         idMembro: comunicado.idMembro
       });
     } catch (error) {
-      console.error(error);
+      console.error('Erro ao criar comunicado:', error);
       return reply.status(500).send({ message: 'Erro interno do servidor.' });
     }
   });
