@@ -207,7 +207,7 @@ export default function ProfilePage() {
                   type="button"
                   onClick={(e) => {
                     e.preventDefault()
-                    router.push("/intention/list")
+                    router.push("/intentions/list")
                   }}
                   className="flex-1 bg-gray-500 text-white font-medium py-2 rounded-lg hover:bg-gray-600 transition-colors"
                 >

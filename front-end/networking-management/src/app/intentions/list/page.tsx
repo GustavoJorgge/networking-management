@@ -5,14 +5,13 @@ import { Card, CardContent, CardTitle } from "@/app/components/ui/input/card";
 import ProtectedRoute from "@/hooks/ProtectedRoute";
 import { api } from "@/lib/api/axios";
 import axios from "axios";
-import { CheckCircle, Filter, Trash2, UserCheck2, UserPlus, XCircle } from "lucide-react";
+import { Bell, CheckCircle, Filter, Trash2, User, UserCheck2, UserPlus, XCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function ListaIntencoes() {
-
-
-
+  const router = useRouter();
   const [intencoes, setIntencoes] = useState<Intention[]>([]);
   const [loading, setLoading] = useState(true);
   const [statusFiltro, setStatusFiltro] = useState<"TODOS" | "PENDENTE" | "APROVADA" | "REJEITADA">("TODOS");
@@ -89,6 +88,27 @@ export default function ListaIntencoes() {
   return (
     <ProtectedRoute>
       <div className="max-w-4xl mx-auto mt-10 bg-white rounded-2xl shadow-lg p-6">
+        {/* Botões de Navegação */}
+        <div className="flex justify-end gap-3 mb-6">
+          <button
+            onClick={() => router.push("/profile")}
+            className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+            title="Ir para Perfil"
+          >
+            <User size={18} />
+            Perfil
+          </button>
+          <button
+            onClick={() => router.push("/comunicados")}
+            className="flex items-center gap-2 bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700 transition-colors"
+            title="Ir para Comunicados"
+          >
+            <Bell size={18} />
+            Comunicados
+          </button>
+        </div>
+
+        {/* Cards de Estatísticas */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
           <Card>
             <CardTitle>
@@ -128,7 +148,6 @@ export default function ListaIntencoes() {
           <Filter className="w-5 h-5 text-gray-600" />
           <select
             value={statusFiltro}
-
             onChange={(e) => setStatusFiltro(e.target.value as "TODOS" | "PENDENTE" | "APROVADA" | "REJEITADA")}
             className="border border-gray-300 rounded-lg px-3 py-1 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
