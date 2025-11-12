@@ -11,9 +11,11 @@ import { toast } from "react-toastify";
 export default function ListaIntencoes() {
   const [intencoes, setIntencoes] = useState<Intention[]>([]);
   const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({ pendentes: 0, aprovadas: 0, rejeitadas: 0, total: 0 });
 
   useEffect(() => {
     fetchIntencoes();
+    fetchEstatisticas();
   }, []);
 
   async function fetchIntencoes() {
@@ -51,6 +53,24 @@ export default function ListaIntencoes() {
     }
   }
 
+  async function fetchEstatisticas(params?: Record<string, unknown>) {
+    try {
+      const { data } = await api.get('/intencoes/estatisticas', { params });
+
+      setStats({
+        pendentes: data.pendentes?.length ?? 0,
+        aprovadas: data.aprovadas?.length ?? 0,
+        rejeitadas: data.rejeitadas?.length ?? 0,
+        total:
+          (data.pendentes?.length ?? 0) +
+          (data.aprovadas?.length ?? 0) +
+          (data.rejeitadas?.length ?? 0),
+      });
+    } catch (error) {
+      console.error('Erro ao carregar estatísticas:', error);
+    }
+  }
+
 
   if (loading) {
     return <p className="text-center mt-6 text-gray-500">Carregando intenções...</p>;
@@ -65,7 +85,7 @@ export default function ListaIntencoes() {
             <UserPlus className="w-5 h-5 text-sky-700" aria-hidden="true" />
             Pendentes
           </CardTitle>
-          <CardContent>0</CardContent>
+          <CardContent>{stats.pendentes}</CardContent>
         </Card>
 
         <Card>
@@ -73,7 +93,7 @@ export default function ListaIntencoes() {
             <UserPlus className="w-5 h-5 text-sky-700" aria-hidden="true" />
             Aprovados
           </CardTitle>
-          <CardContent>0</CardContent>
+          <CardContent>{stats.aprovadas}</CardContent>
         </Card>
 
         <Card>
@@ -81,7 +101,7 @@ export default function ListaIntencoes() {
             <UserPlus className="w-5 h-5 text-sky-700" aria-hidden="true" />
             Rejeitados
           </CardTitle>
-          <CardContent>0</CardContent>
+          <CardContent>{stats.rejeitadas}</CardContent>
         </Card>
 
         <Card>
@@ -89,7 +109,7 @@ export default function ListaIntencoes() {
             <UserPlus className="w-5 h-5 text-sky-700" aria-hidden="true" />
             Total
           </CardTitle>
-          <CardContent>0</CardContent>
+          <CardContent>{stats.total}</CardContent>
         </Card>
 
       </div>
@@ -112,7 +132,6 @@ export default function ListaIntencoes() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  {/* STATUS */}
                   <span
                     className={`px-3 py-1 rounded-full text-sm font-semibold ${item.status === "APROVADA"
                       ? "bg-green-100 text-green-700"
@@ -124,9 +143,8 @@ export default function ListaIntencoes() {
                     {item.status}
                   </span>
 
-                  {/* BOTÕES DE AÇÃO */}
                   <div className="flex gap-2">
-                    {item.status === "Pendente" && (
+                    {item.status === "PENDENTE" && (
                       <>
                         <button
                           onClick={() => atualizarStatus(item.id, "APROVADA")}
@@ -145,7 +163,6 @@ export default function ListaIntencoes() {
                       </>
                     )}
 
-                    {/* Lixeira sempre visível */}
                     <button
                       onClick={() => deletarIntencao(item.id)}
                       className="text-gray-500 hover:text-red-700"

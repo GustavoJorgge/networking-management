@@ -1,31 +1,59 @@
 import prisma from "@/infra/prisma/client";
 import { FastifyInstance } from "fastify";
+import { ZodTypeProvider } from "fastify-type-provider-zod";
+import { z } from "zod";
 
 export async function getEstatisticasIntencoesRoute(server: FastifyInstance) {
-    server.get("/intencoes/estatisticas", {
-        schema: {
-            tags: ["Intenções"],
-            summary: "Retorna contagem de intenções por status",
-            response: {
-                200: {
-                    type: "object",
-                    properties: {
-                        pendentes: { type: "number" },
-                        aprovadas: { type: "number" },
-                        rejeitadas: { type: "number" },
-                        total: { type: "number" },
-                    },
+    server.withTypeProvider<ZodTypeProvider>().get(
+        "/intencoes/estatisticas",
+        {
+            schema: {
+                tags: ["Intenções"],
+                summary: "Retorna intenções agrupadas por status",
+                response: {
+                    200: z.object({
+                        pendentes: z.array(
+                            z.object({
+                                id: z.string(),
+                                name: z.string(),
+                                email: z.string(),
+                                empresa: z.string().nullable(),
+                                motivo: z.string().nullable(),
+                                status: z.string(),
+                            })
+                        ),
+                        aprovadas: z.array(
+                            z.object({
+                                id: z.string(),
+                                name: z.string(),
+                                email: z.string(),
+                                empresa: z.string().nullable(),
+                                motivo: z.string().nullable(),
+                                status: z.string(),
+                            })
+                        ),
+                        rejeitadas: z.array(
+                            z.object({
+                                id: z.string(),
+                                name: z.string(),
+                                email: z.string(),
+                                empresa: z.string().nullable(),
+                                motivo: z.string().nullable(),
+                                status: z.string(),
+                            })
+                        ),
+                    }),
                 },
             },
         },
-    }, async (_, reply) => {
-        const [pendentes, aprovadas, rejeitadas, total] = await Promise.all([
-            prisma.intencaoParticipar.count({ where: { status: "PENDENTE" } }),
-            prisma.intencaoParticipar.count({ where: { status: "APROVADA" } }),
-            prisma.intencaoParticipar.count({ where: { status: "REJEITADA" } }),
-            prisma.intencaoParticipar.count(),
-        ]);
+        async (_, reply) => {
+            const [pendentes, aprovadas, rejeitadas] = await Promise.all([
+                prisma.intencaoParticipar.findMany({ where: { status: "PENDENTE" } }),
+                prisma.intencaoParticipar.findMany({ where: { status: "APROVADA" } }),
+                prisma.intencaoParticipar.findMany({ where: { status: "REJEITADA" } }),
+            ]);
 
-        return reply.send({ pendentes, aprovadas, rejeitadas, total });
-    });
+            return reply.send({ pendentes, aprovadas, rejeitadas });
+        }
+    );
 }

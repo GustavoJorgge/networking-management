@@ -26,7 +26,7 @@ export function createIntencaoRoute(server: FastifyInstance) {
             email: z.string().email(),
             empresa: z.string(),
             motivo: z.string(),
-            status: z.string().default('Pendente'),
+            status: z.string().default('PENDENTE'),
         })
 
         const result = newIntencaoSchema.safeParse(request.body)
