@@ -1,30 +1,52 @@
 import prisma from "@/infra/prisma/client";
 import { FastifyInstance } from "fastify";
-import jwt from "jsonwebtoken";
 import { z } from "zod";
 
-const JWT_SECRET = process.env.JWT_SECRET || "supersecret";
+export async function loginRoute(server: FastifyInstance) {
+    server.post("/login", {
+        schema: {
+            tags: ["Auth"],
+            summary: "Login com JWT via e-mail",
+            body: z.object({
+                email: z.string().email(),
+            }),
+            response: {
+                200: z.object({
+                    message: z.string(),
+                    token: z.string(),
+                    user: z.object({
+                        id: z.string(),
+                        name: z.string(),
+                        email: z.string(),
+                    }),
+                }),
+                401: z.object({
+                    message: z.string(),
+                }),
+            },
+        },
+    }, async (request, reply) => {
+        const { email } = request.body as { email: string };
 
-export async function authRoute(server: FastifyInstance) {
-    server.post("/login", async (req, reply) => {
-        const bodySchema = z.object({
-            email: z.string().email(),
+        const membro = await prisma.membro.findUnique({
+            where: { email },
+            select: { id: true, name: true, email: true },
         });
 
-        const { email } = bodySchema.parse(req.body);
-
-        const membro = await prisma.membro.findUnique({ where: { email } });
-
         if (!membro) {
-            return reply.status(401).send({ message: "Acesso negado. Membro não encontrado." });
+            return reply.status(401).send({ message: "Usuário não encontrado" });
         }
 
-        const token = jwt.sign(
-            { id: membro.id, email: membro.email, name: membro.name },
-            JWT_SECRET,
-            { expiresIn: "1d" }
+        // Gera o token JWT
+        const token = server.jwt.sign(
+            { id: membro.id, email: membro.email },
+            { expiresIn: "1d" } // expira em 1 dia
         );
 
-        return reply.send({ token, membro });
+        return reply.send({
+            message: "Login realizado com sucesso",
+            token,
+            user: membro,
+        });
     });
 }

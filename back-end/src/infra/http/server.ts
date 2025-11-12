@@ -10,7 +10,7 @@ import {
     serializerCompiler,
     validatorCompiler
 } from 'fastify-type-provider-zod';
-import { authRoute } from "./routes/authRoute/authRoute";
+import { loginRoute } from "./routes/authRoute/authRoute";
 import { createComunicadoRoute } from './routes/comunicados/create-comunicado';
 import { getComunicadosRoute } from './routes/comunicados/get-comunicados';
 import { createIntencaoRoute } from './routes/intencoes/create-intencao';
@@ -50,7 +50,7 @@ server.register(fastifySwaggerUi, {
 })
 
 //Autenticação e Autorização
-server.register(authRoute)
+server.register(loginRoute)
 
 // Rotas de Intenções
 server.register(createIntencaoRoute)
