@@ -23,7 +23,8 @@ import { getMemberRoute } from './routes/membros/get-member';
 import { getMemberByEmailRoute } from "./routes/membros/get-memberByEmail";
 import { getMemberByIdRoute } from './routes/membros/get-memberById';
 import { updateStatusIntencaoRoute } from './routes/membros/update-statusIntencao';
-import { getProfileRoute } from "./routes/profile/profile";
+import { getProfileRoute } from "./routes/profile/get-profile";
+import { updateProfileRoute } from "./routes/profile/update-profile";
 
 const server = fastify();
 
@@ -88,6 +89,7 @@ server.register(getComunicadosRoute);
 
 // Rotas de Perfil
 server.register(getProfileRoute)
+server.register(updateProfileRoute)
 
 console.log(env.DATABASE_URL);
 
