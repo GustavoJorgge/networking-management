@@ -1,0 +1,1185 @@
+{
+	"log": {
+		"version": "1.2",
+		"creator": {
+			"name": "Insomnia REST Client",
+			"version": "insomnia.desktop.app:v12.0.0"
+		},
+		"entries": [
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 5.188,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:3333/profile",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU",
+							"value": ""
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "236"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 05:00:29 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 236,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"id\":\"4d19df61-ca48-46fb-837a-0f2c429ce815\",\"name\":\"Beatriz Silva\",\"email\":\"beatriz.costa@email.com\",\"empresa\":\"HealthPro\",\"cargo\":\"Analista de Sistemas\",\"telefone\":\"31994603457\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-12T00:40:33.945Z\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 5.188,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Busca Perfil Autenticado"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 44.714,
+				"request": {
+					"method": "PUT",
+					"url": "http://localhost:3333/profile",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU",
+							"value": ""
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"id\": \"4d19df61-ca48-46fb-837a-0f2c429ce815\",\n\t\"name\": \"Beatriz Silva\",\n\t\"email\": \"beatriz.costa@email.com\",\n\t\"empresa\": \"HealthPro\",\n\t\"cargo\": \"\",\n\t\"telefone\": \"\",\n\t\"status\": \"Ativo\",\n\t\"createdAt\": \"2025-11-12T00:40:33.945Z\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "200"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 03:07:52 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 200,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"message\":\"Perfil atualizado com sucesso\",\"user\":{\"id\":\"4d19df61-ca48-46fb-837a-0f2c429ce815\",\"name\":\"Beatriz Silva\",\"email\":\"beatriz.costa@email.com\",\"empresa\":\"HealthPro\",\"telefone\":\"\",\"cargo\":\"\"}}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 44.714,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Busca Perfil Autenticado"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 51.069,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:3333/login",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"email\":\"carlos.almeida@example.com\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "402"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 03:06:50 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 402,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"message\":\"Login realizado com sucesso\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMDRlYzMxLTAxYWMtNGJkYy1iYWI3LWY5NmE0NDAyNzRiNiIsImVtYWlsIjoiY2FybG9zLmFsbWVpZGFAZXhhbXBsZS5jb20iLCJpYXQiOjE3NjI5MTY4MTAsImV4cCI6MTc2MzAwMzIxMH0.2KdHqB1xJbTQ8pFzVzW1gIyvMiuv2bfvsthSy9tv5NA\",\"user\":{\"id\":\"ca04ec31-01ac-4bdc-bab7-f96a440274b6\",\"name\":\"Carlos Almeida\",\"email\":\"carlos.almeida@example.com\"}}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 51.069,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Realiza Login Token"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 5.373,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:3333/intencoes",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer",
+							"value": "[object Object]"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "1629"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 01:26:59 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 1629,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "[{\"id\":\"a7f40321-0931-4f0d-933d-1834f59fed90\",\"name\":\"Beatriz Costa\",\"email\":\"beatriz.costa@email.com\",\"empresa\":\"HealthPro\",\"motivo\":\"Proposta de cooperação em soluções de saúde digital\",\"status\":\"PENDENTE\"},{\"id\":\"5ebe1449-0141-4e20-b02a-fbe941ed5dcb\",\"name\":\"Beatriz Costa\",\"email\":\"beatriz.costa@email.com\",\"empresa\":\"HealthPro\",\"motivo\":\"Proposta de cooperação em soluções de saúde digital\",\"status\":\"PENDENTE\"},{\"id\":\"d964109c-741a-4b4f-8fc4-267abc1b417b\",\"name\":\"Beatriz Costa\",\"email\":\"beatriz.costa@email.com\",\"empresa\":\"HealthPro\",\"motivo\":\"Proposta de cooperação em soluções de saúde digital\",\"status\":\"APROVADA\"},{\"id\":\"f2c28332-9c8e-4841-aa34-f2aaebf4ccbe\",\"name\":\"Felipe Andrade\",\"email\":\"felipe.andrade@email.com\",\"empresa\":\"LogiSys\",\"motivo\":\"Solicitação de integração de sistema logístico\",\"status\":\"REJEITADA\"},{\"id\":\"12187919-fd2e-4e5b-ba34-60522e2a337b\",\"name\":\"Mariana Ribeiro\",\"email\":\"mariana.ribeiro@email.com\",\"empresa\":\"EducaMais\",\"motivo\":\"Interesse em colaboração para eventos educacionais\",\"status\":\"REJEITADA\"},{\"id\":\"6bb3eda9-f8f1-4ac4-99a5-590e1b9ab2c1\",\"name\":\"Carlos Lima\",\"email\":\"carlos.lima@email.com\",\"empresa\":\"AgroSmart\",\"motivo\":\"Parceria para soluções agrícolas inteligentes\",\"status\":\"PENDENTE\"},{\"id\":\"0d890b67-119f-4c64-8c50-de5d913db9df\",\"name\":\"Ana Souza\",\"email\":\"ana.souza@email.com\",\"empresa\":\"InovaTech\",\"motivo\":\"Interesse em participar do grupo de tecnologia\",\"status\":\"PENDENTE\"},{\"id\":\"1613b32e-65a0-49b5-8664-ca09511646fe\",\"name\":\"testando filtros\",\"email\":\"teste@gmail.com\",\"empresa\":\"testando filtro\",\"motivo\":\"teste filtro\",\"status\":\"APROVADA\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 5.373,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Busca Intenções"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 20.226000000000003,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:3333/intencoes/estatisticas",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "1246"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 01:24:42 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 1246,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"pendentes\":[{\"id\":\"0d890b67-119f-4c64-8c50-de5d913db9df\",\"name\":\"Ana Souza\",\"email\":\"ana.souza@email.com\",\"empresa\":\"InovaTech\",\"motivo\":\"Interesse em participar do grupo de tecnologia\",\"status\":\"PENDENTE\"},{\"id\":\"6bb3eda9-f8f1-4ac4-99a5-590e1b9ab2c1\",\"name\":\"Carlos Lima\",\"email\":\"carlos.lima@email.com\",\"empresa\":\"AgroSmart\",\"motivo\":\"Parceria para soluções agrícolas inteligentes\",\"status\":\"PENDENTE\"}],\"aprovadas\":[{\"id\":\"1613b32e-65a0-49b5-8664-ca09511646fe\",\"name\":\"testando filtros\",\"email\":\"teste@gmail.com\",\"empresa\":\"testando filtro\",\"motivo\":\"teste filtro\",\"status\":\"APROVADA\"},{\"id\":\"d964109c-741a-4b4f-8fc4-267abc1b417b\",\"name\":\"Beatriz Costa\",\"email\":\"beatriz.costa@email.com\",\"empresa\":\"HealthPro\",\"motivo\":\"Proposta de cooperação em soluções de saúde digital\",\"status\":\"APROVADA\"}],\"rejeitadas\":[{\"id\":\"f2c28332-9c8e-4841-aa34-f2aaebf4ccbe\",\"name\":\"Felipe Andrade\",\"email\":\"felipe.andrade@email.com\",\"empresa\":\"LogiSys\",\"motivo\":\"Solicitação de integração de sistema logístico\",\"status\":\"REJEITADA\"},{\"id\":\"12187919-fd2e-4e5b-ba34-60522e2a337b\",\"name\":\"Mariana Ribeiro\",\"email\":\"mariana.ribeiro@email.com\",\"empresa\":\"EducaMais\",\"motivo\":\"Interesse em colaboração para eventos educacionais\",\"status\":\"REJEITADA\"}]}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 20.226000000000003,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Busca Estatisticas"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 5.444,
+				"request": {
+					"method": "PUT",
+					"url": "http://localhost:3333/intencoes/85f3cb5f-91a2-455e-b370-bdb5acc43217/status",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"status\":\"REJEITADA\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 404,
+					"statusText": "Not Found",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "41"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 01:25:22 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 41,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"message\":\"Intenção não encontrada.\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 5.444,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Atualiza Intenção e Cria Membro"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 36.948,
+				"request": {
+					"method": "DELETE",
+					"url": "http://localhost:3333/intencoes/53703be9-5ffd-4ed5-b92c-853fbe8b23a2",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 204,
+					"statusText": "No Content",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "Date",
+							"value": "Tue, 11 Nov 2025 05:20:26 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 0,
+						"mimeType": "",
+						"text": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 36.948,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Deleta Intenções"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 6.158,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:3333/intencoes",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"name\": \"Beatriz Costa\",\n  \"email\": \"beatriz.costa@email.com\",\n  \"empresa\": \"HealthPro\",\n  \"motivo\": \"Proposta de cooperação em soluções de saúde digital\"\n}\n"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "Created",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "101"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 01:32:26 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 101,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"id\":\"6d1698d8-bef5-4fb4-850f-c41f1a7169d4\",\"message\":\"Intenção de ser membro criada com sucesso\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 6.158,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Cria Intenções"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 24.502,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:3333/members",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU",
+							"value": ""
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "2164"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 01:55:29 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 2164,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "[{\"id\":\"ca04ec31-01ac-4bdc-bab7-f96a440274b6\",\"name\":\"Carlos Almeida\",\"email\":\"carlos.almeida@example.com\",\"empresa\":\"NextGen Systems\",\"telefone\":\"(31) 99876-5432\",\"cargo\":\"Analista de Sistemas\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-08T19:42:54.600Z\"},{\"id\":\"ecc24ec6-bdf3-4c15-8ea0-b8d634029b22\",\"name\":\"Mariana Costa\",\"email\":\"mariana.costa@email.com\",\"empresa\":\"InovaTech\",\"telefone\":\"(21) 98888-7777\",\"cargo\":\"Gerente de Projetos\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-09T22:20:28.118Z\"},{\"id\":\"faf78ab8-dd38-4bc9-a8a1-4eaf4ddb1764\",\"name\":\"Gustavo Jorge\",\"email\":\"gustavo.jorge@example.com\",\"empresa\":\"Tech Solutions LTDA\",\"telefone\":\"\",\"cargo\":\"\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-10T14:48:26.791Z\"},{\"id\":\"030f2327-1073-4d4e-bf46-b28eccc030eb\",\"name\":\"João 1\",\"email\":\"joao.2@email.com\",\"empresa\":\"Tech Solutions\",\"telefone\":\"\",\"cargo\":\"\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-11T05:05:21.382Z\"},{\"id\":\"332d3971-df59-4e1f-866a-2d86b72a100b\",\"name\":\"Gustavo Jorge Batista de Oliveira\",\"email\":\"gustavojorgeskt@gmail.com\",\"empresa\":\"Voke\",\"telefone\":\"\",\"cargo\":\"\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-11T05:06:07.267Z\"},{\"id\":\"fead540f-ba45-4d00-a259-d9221f941f7c\",\"name\":\"swagger\",\"email\":\"swagger@teste.com\",\"empresa\":\"teste\",\"telefone\":\"\",\"cargo\":\"\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-11T05:06:11.307Z\"},{\"id\":\"6132541e-1228-4ea2-943e-70a55e08221b\",\"name\":\"asdas\",\"email\":\"dsadsa@sadas.com\",\"empresa\":\"dasdas\",\"telefone\":\"\",\"cargo\":\"\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-11T05:14:46.268Z\"},{\"id\":\"615d73ad-432c-4094-bb11-2018e5021643\",\"name\":\"testando filtros\",\"email\":\"teste@gmail.com\",\"empresa\":\"testando filtro\",\"telefone\":\"\",\"cargo\":\"\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-12T00:12:22.329Z\"},{\"id\":\"4d19df61-ca48-46fb-837a-0f2c429ce815\",\"name\":\"Beatriz Costa\",\"email\":\"beatriz.costa@email.com\",\"empresa\":\"HealthPro\",\"telefone\":\"\",\"cargo\":\"\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-12T00:40:33.945Z\"},{\"id\":\"1c9f1092-6cc3-4395-b7c2-68a97c9e23c1\",\"name\":\"Mariana Costa\",\"email\":\"mariana.costaaa@email.com\",\"empresa\":\"InovaTech\",\"telefone\":\"(21) 98888-7777\",\"cargo\":\"Gerente de Projetos\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-12T01:14:08.071Z\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 24.502,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Busca Membros"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 3.0509999999999997,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:3333/members/email/carlos.almeida@example.com",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU",
+							"value": ""
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "250"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 01:35:29 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 250,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"id\":\"ca04ec31-01ac-4bdc-bab7-f96a440274b6\",\"name\":\"Carlos Almeida\",\"email\":\"carlos.almeida@example.com\",\"empresa\":\"NextGen Systems\",\"telefone\":\"(31) 99876-5432\",\"cargo\":\"Analista de Sistemas\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-08T19:42:54.600Z\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 3.0509999999999997,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Busca Membro por E-mail"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 16.027,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:3333/members",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU",
+							"value": ""
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"name\": \"Mariana Costa\",\n  \"email\": \"mariana.costaaa@email.com\",\n  \"empresa\": \"InovaTech\",\n  \"telefone\": \"(21) 98888-7777\",\n  \"cargo\": \"Gerente de Projetos\"\n}\n"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "Created",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "83"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 01:36:01 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 83,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"message\":\"Membro criado com sucesso\",\"id\":\"1c9f1092-6cc3-4395-b7c2-68a97c9e23c1\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 16.027,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Cria Membros"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 5.381,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:3333/members/ca04ec31-01ac-4bdc-bab7-f96a440274b6",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU",
+							"value": ""
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "Created",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "250"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 01:36:36 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 250,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"id\":\"ca04ec31-01ac-4bdc-bab7-f96a440274b6\",\"name\":\"Carlos Almeida\",\"email\":\"carlos.almeida@example.com\",\"empresa\":\"NextGen Systems\",\"telefone\":\"(31) 99876-5432\",\"cargo\":\"Analista de Sistemas\",\"status\":\"Ativo\",\"createdAt\":\"2025-11-08T19:42:54.600Z\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 5.381,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Busca Membros por ID"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 3.7230000000000003,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:3333/comunicados",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU",
+							"value": ""
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "1193"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 06:05:35 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 1193,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "[{\"id\":\"807db388-d733-46f4-9b7e-3795680efbe3\",\"titulo\":\"Manutenção programada no sistema\",\"conteudo\":\"O sistema ficará indisponível das 22h às 23h para atualização de segurança.\",\"autor\":\"Equipe de TI\",\"criadoEm\":\"2025-11-10T14:10:55.784Z\",\"idMembro\":\"e7d8b3f4-2c1a-4c9f-9a1a-2d2b9f12d7c4\"},{\"id\":\"2ddbab18-d173-45e7-a841-6fd4904a8303\",\"titulo\":\"Manutenção programada no sistema\",\"conteudo\":\"O sistema ficará indisponível das 22h às 23h para atualização de segurança.\",\"autor\":\"Equipe de TI\",\"criadoEm\":\"2025-11-10T14:07:37.255Z\",\"idMembro\":\"e7d8b3f4-2c1a-4c9f-9a1a-2d2b9f12d7c4\"},{\"id\":\"2784d260-0e9a-499c-9bb2-eb614b50088f\",\"titulo\":\"Manutenção programada no sistema\",\"conteudo\":\"O sistema ficará indisponível das 22h às 23h para atualização de segurança.\",\"autor\":\"Equipe de TI\",\"criadoEm\":\"2025-11-10T14:07:36.059Z\",\"idMembro\":\"e7d8b3f4-2c1a-4c9f-9a1a-2d2b9f12d7c4\"},{\"id\":\"d58d9e44-dbf8-43e5-9875-5bcaf5d911c9\",\"titulo\":\"Manutenção programada no sistema\",\"conteudo\":\"O sistema ficará indisponível das 22h às 23h para atualização de segurança.\",\"autor\":\"Equipe de TI\",\"criadoEm\":\"2025-11-10T14:06:43.006Z\",\"idMembro\":\"e7d8b3f4-2c1a-4c9f-9a1a-2d2b9f12d7c4\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 3.7230000000000003,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Busca Comunicados"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 7.617999999999999,
+				"request": {
+					"method": "DELETE",
+					"url": "http://localhost:3333/comunicados/9604bfef-43ab-428d-94d9-f93d38171b37",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU",
+							"value": ""
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 204,
+					"statusText": "No Content",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 06:05:29 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 0,
+						"mimeType": "",
+						"text": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 7.617999999999999,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Deleta Comunicado por ID"
+			},
+			{
+				"startedDateTime": "2025-11-12T06:06:27.502Z",
+				"time": 16.995,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:3333/comunicados",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkMTlkZjYxLWNhNDgtNDZmYi04MzdhLTBmMmM0MjljZTgxNSIsImVtYWlsIjoiYmVhdHJpei5jb3N0YUBlbWFpbC5jb20iLCJpYXQiOjE3NjI5MTEwNDMsImV4cCI6MTc2Mjk5NzQ0M30.qmCmbtM0oaeXGSbvhmqJsRow6IHIQ8aEHKei8I-mUsU",
+							"value": ""
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.0.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"titulo\": \"Manutenção programada no sistema\",\n  \"conteudo\": \"O sistema ficará indisponível das 22h às 23h para atualização de segurança.\",\n  \"autor\": \"Equipe de TI\",\n  \"idMembro\": \"e7d8b3f4-2c1a-4c9f-9a1a-2d2b9f12d7c4\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "Created",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"name": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "content-length",
+							"value": "297"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 12 Nov 2025 01:37:00 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"content": {
+						"size": 297,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"id\":\"dd82eca1-6bba-475f-a17b-15275a2a69e9\",\"titulo\":\"Manutenção programada no sistema\",\"conteudo\":\"O sistema ficará indisponível das 22h às 23h para atualização de segurança.\",\"autor\":\"Equipe de TI\",\"criadoEm\":\"2025-11-12T01:37:00.398Z\",\"idMembro\":\"e7d8b3f4-2c1a-4c9f-9a1a-2d2b9f12d7c4\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 16.995,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Cria Comunicado"
+			}
+		]
+	}
+}
