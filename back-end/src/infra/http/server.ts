@@ -1,5 +1,6 @@
 import { env } from "@/env";
 import { fastifyCors } from '@fastify/cors';
+import fastifyJwt from "@fastify/jwt";
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import 'dotenv/config';
@@ -9,6 +10,7 @@ import {
     serializerCompiler,
     validatorCompiler
 } from 'fastify-type-provider-zod';
+import { authRoute } from "./routes/authRoute/authRoute";
 import { createComunicadoRoute } from './routes/comunicados/create-comunicado';
 import { getComunicadosRoute } from './routes/comunicados/get-comunicados';
 import { createIntencaoRoute } from './routes/intencoes/create-intencao';
@@ -28,6 +30,10 @@ server.setSerializerCompiler(serializerCompiler)
 
 server.register(fastifyCors, { origin: '*' })
 
+server.register(fastifyJwt, {
+    secret: process.env.JWT_SECRET || "super-secret-key",
+});
+
 server.register(fastifySwagger, {
     openapi: {
         info: {
@@ -43,6 +49,9 @@ server.register(fastifySwaggerUi, {
     routePrefix: '/docs',
 })
 
+//Autenticação e Autorização
+server.register(authRoute)
+
 // Rotas de Intenções
 server.register(createIntencaoRoute)
 server.register(getIntencoesRoute)
@@ -57,6 +66,7 @@ server.register(getMemberByEmailRoute)
 // Rotas de Comunicados
 server.register(createComunicadoRoute)
 server.register(getComunicadosRoute)
+
 
 
 
