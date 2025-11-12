@@ -10,6 +10,7 @@ import {
     serializerCompiler,
     validatorCompiler
 } from 'fastify-type-provider-zod';
+
 import { loginRoute } from "./routes/authRoute/authRoute";
 import { createComunicadoRoute } from './routes/comunicados/create-comunicado';
 import { getComunicadosRoute } from './routes/comunicados/get-comunicados';
@@ -25,10 +26,10 @@ import { updateStatusIntencaoRoute } from './routes/membros/update-statusIntenca
 
 const server = fastify();
 
-server.setValidatorCompiler(validatorCompiler)
-server.setSerializerCompiler(serializerCompiler)
+server.setValidatorCompiler(validatorCompiler);
+server.setSerializerCompiler(serializerCompiler);
 
-server.register(fastifyCors, { origin: '*' })
+server.register(fastifyCors, { origin: '*' });
 
 server.register(fastifyJwt, {
     secret: process.env.JWT_SECRET || "super-secret-key",
@@ -42,36 +43,50 @@ server.register(fastifySwagger, {
             version: '1.0.0',
         },
     },
-    transform: jsonSchemaTransform
-})
+    transform: jsonSchemaTransform,
+});
 
 server.register(fastifySwaggerUi, {
     routePrefix: '/docs',
-})
+});
 
-//Autenticação e Autorização
-server.register(loginRoute)
+// Middleware de autenticação
+server.addHook("onRequest", async (request, reply) => {
+    const publicRoutes = ["/login", "/intencoes", "/docs"];
 
-// Rotas de Intenções
-server.register(createIntencaoRoute)
-server.register(getIntencoesRoute)
-server.register(deleteIntencaoRoute)
-server.register(getEstatisticasIntencoesRoute)
+    if (publicRoutes.some((route) => request.url.startsWith(route))) {
+        return;
+    }
+
+    try {
+        await request.jwtVerify();
+    } catch (err) {
+        return reply.status(401).send({ message: "Token inválido ou ausente" });
+    }
+});
+
+// Rotas públicas
+server.register(loginRoute);
+server.register(createIntencaoRoute);
+
+// Rotas de Intencoes
+server.register(getIntencoesRoute);
+server.register(deleteIntencaoRoute);
+server.register(getEstatisticasIntencoesRoute);
+
 // Rotas de Membros
-server.register(getMemberRoute)
-server.register(createMemberRoute)
-server.register(updateStatusIntencaoRoute)
-server.register(getMemberByIdRoute)
-server.register(getMemberByEmailRoute)
+server.register(getMemberRoute);
+server.register(createMemberRoute);
+server.register(updateStatusIntencaoRoute);
+server.register(getMemberByIdRoute);
+server.register(getMemberByEmailRoute);
+
 // Rotas de Comunicados
-server.register(createComunicadoRoute)
-server.register(getComunicadosRoute)
+server.register(createComunicadoRoute);
+server.register(getComunicadosRoute);
 
-
-
-
-console.log(env.DATABASE_URL)
+console.log(env.DATABASE_URL);
 
 server.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
-    console.log('Servidor rodando na porta 3333')
-})
+    console.log('Servidor rodando na porta 3333');
+});

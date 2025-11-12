@@ -5,7 +5,7 @@ import { z } from 'zod';
 export function createIntencaoRoute(server: FastifyInstance) {
     server.post('/intencoes', {
         schema: {
-            tags: ["Intenções"],
+            tags: ["Rota Publica - Intenções"],
             summary: 'Cria uma nova intenção de participação',
             body: z.object({
                 name: z.string(),
