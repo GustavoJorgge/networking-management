@@ -51,6 +51,21 @@ export default function ProfilePage() {
     }
   }
 
+  const handleCancel = () => {
+    setEditing(false)
+    // Recarrega os dados originais do formulário
+    async function fetchProfile() {
+      try {
+        const { data } = await api.get("/profile")
+        reset(data)
+      } catch (error) {
+        console.error("Erro ao recarregar perfil:", error)
+      }
+    }
+    fetchProfile()
+    toast.info("Edição cancelada")
+  }
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-80">
@@ -61,7 +76,7 @@ export default function ProfilePage() {
 
   return (
     <ProtectedRoute>
-      <div className="max-w-xl mx-auto mt-10 bg-white shadow-lg rounded-2xl p-8">
+      <div data-editing={editing} className="max-w-xl mx-auto mt-10 bg-white shadow-lg rounded-2xl p-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">Meu Perfil</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -170,10 +185,7 @@ export default function ProfilePage() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => {
-                    setEditing(false)
-                    toast.info("Edição cancelada")
-                  }}
+                  onClick={handleCancel}
                   className="flex-1 bg-gray-500 text-white font-medium py-2 rounded-lg hover:bg-gray-600 transition-colors"
                 >
                   Cancelar
@@ -183,14 +195,20 @@ export default function ProfilePage() {
               <>
                 <button
                   type="button"
-                  onClick={() => setEditing(true)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setEditing(true)
+                  }}
                   className="flex-1 bg-sky-600 text-white font-medium py-2 rounded-lg hover:bg-sky-700 transition-colors"
                 >
                   Editar Perfil
                 </button>
                 <button
                   type="button"
-                  onClick={() => router.push("/intention/list")}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    router.push("/intention/list")
+                  }}
                   className="flex-1 bg-gray-500 text-white font-medium py-2 rounded-lg hover:bg-gray-600 transition-colors"
                 >
                   Voltar
