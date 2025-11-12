@@ -141,6 +141,7 @@ Sistema completo para a gestão de membros, comunicados e intenção de particip
 
 ```
 .
+├── .docs                     # Documentação de Arquitetura e Collection
 ├── back-end/
 │   ├── src/
 │   │   ├── domain/           # Entidades e regras de negócio
