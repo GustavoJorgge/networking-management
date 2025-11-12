@@ -28,19 +28,30 @@ export async function loginRoute(server: FastifyInstance) {
     }, async (request, reply) => {
         const { email } = request.body as { email: string };
 
-        const membro = await prisma.membro.findUnique({
-            where: { email },
-            select: { id: true, name: true, email: true },
-        });
+        const emailTeste = "agsistemas@teste.com";
+
+        let membro = null;
+        /* Coloquei este trecho de código para vocês testarem o login sem precisar criar o membro no banco no primeiro acesso*/
+        if (email === emailTeste) {
+            membro = {
+                id: "00000000-0000-0000-0000-000000000000",
+                name: "Usuário Teste AG Sistemas",
+                email: emailTeste,
+            };
+        } else {
+            membro = await prisma.membro.findUnique({
+                where: { email },
+                select: { id: true, name: true, email: true },
+            });
+        }
 
         if (!membro) {
             return reply.status(401).send({ message: "Usuário não encontrado" });
         }
 
-        // Gera o token JWT
         const token = server.jwt.sign(
             { id: membro.id, email: membro.email },
-            { expiresIn: "1d" } // expira em 1 dia
+            { expiresIn: "1d" }
         );
 
         return reply.send({
