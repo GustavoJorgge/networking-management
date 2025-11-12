@@ -6,6 +6,7 @@ import { api } from "@/lib/api/axios"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from "react-toastify"
+import { Button } from "../ui/input/button"
 
 export function IntentionForm() {
   const router = useRouter()
@@ -110,20 +111,21 @@ export function IntentionForm() {
           </p>
           </div>
             </div>
-      <button
+      <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-sky-600 text-white font-medium py-3 rounded-lg hover:bg-sky-700 transition-colors disabled:opacity-50"
+        className="w-full text-white font-medium py-3 rounded-lg transition-colors disabled:opacity-50"
         >
         {isSubmitting ? "Enviando..." : "Enviar Intenção"}
-      </button>
-      <button
+      </Button>
+      <Button
         type="button"
         onClick={() => router.push("/intentions/list")}
-        className="w-full bg-gray-600 text-white font-medium py-3 rounded-lg hover:bg-gray-700 transition-colors"
+        className="w-full bg-gray-600 font-medium py-3 rounded-lg transition-colors"
+        variant="secondary"
         >
         Ver Intenções Cadastradas
-      </button>
+      </Button>
     </form>
   )
 }

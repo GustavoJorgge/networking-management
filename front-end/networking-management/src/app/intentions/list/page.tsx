@@ -1,6 +1,7 @@
 'use client'
 
 import { Intention } from "@/@types/intention";
+import { Button } from "@/app/components/ui/input/button";
 import { Card, CardContent, CardTitle } from "@/app/components/ui/input/card";
 import ProtectedRoute from "@/hooks/ProtectedRoute";
 import { api } from "@/lib/api/axios";
@@ -90,22 +91,22 @@ export default function ListaIntencoes() {
       <div className="max-w-4xl mx-auto mt-10 bg-white rounded-2xl shadow-lg p-6">
         {/* Botões de Navegação */}
         <div className="flex justify-end gap-3 mb-6">
-          <button
+          <Button
+            variant="secondary"
+            icon={<User />}
             onClick={() => router.push("/profile")}
-            className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
             title="Ir para Perfil"
           >
-            <User size={18} />
             Perfil
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="primary"
+            icon={<Bell />}
             onClick={() => router.push("/comunicados")}
-            className="flex items-center gap-2 bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700 transition-colors"
             title="Ir para Comunicados"
           >
-            <Bell size={18} />
             Comunicados
-          </button>
+          </Button>
         </div>
 
         {/* Cards de Estatísticas */}
